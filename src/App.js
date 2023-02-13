@@ -32,7 +32,8 @@ const App = () => {
   const handleOpenEditForm = ({id,title}) => {
     setIsEditable(true)
     setEditId(id) //（実行されるたびに対象のtodoのidを受け取ってセットされる）
-    setNewTitle()
+    setNewTitle(title)
+    console.log(handleOpenEditForm)
   }
 
   /** 編集フォーム閉じる */  
@@ -121,7 +122,10 @@ const App = () => {
       </select>
 
       {/* Todoリスト */}
-      <ul>
+      
+      {/* <Todo /> */}
+      <ul style={{backgroundColor:'green'}}>
+      <>todoエリア</>
         {filteredTodos.map(todo => (
           <li key={todo.id}>
             <span>{todo.title}</span>
