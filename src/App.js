@@ -1,5 +1,7 @@
 import { useState,useEffect } from "react"
-import Button from "./components/Button";
+// import Button from "./components/Button";
+import Form from "./components/Form";
+import List from "./components/List";
 
 const App = () => {
 
@@ -91,28 +93,26 @@ const App = () => {
 
   return (
     <>
-      {(()=>{
-        if(!isEditable){
-          {/* 新規作成フォーム */}
-          return (
-           <Button type='text' label="タイトル" todoTitle={todoTitle} handleChange={handleAddFormChanges} handleClick={handleAddTodo} />
-          )
-        } else {
-          {/* 編集フォーム */}
-          return (
-            <>
-              <input
-                type="text"
-                label="新しいタイトル"
-                value={newTitle}
-                onChange={handleEditFormChanges}
-              />
-              <button onClick={handleEditTodo}>編集を保存</button>
-              <button onClick={handleCloseEditForm}>キャンセル</button>
-            </>
-          )
-        }
-      })()}
+      {!isEditable ? (
+        /* 新規作成フォーム */
+        <Form
+          type="text"
+          label="タイトル"
+          title={todoTitle}
+          handleChange={handleAddFormChanges}
+          handleClick={handleAddTodo}
+        />
+      ) : (
+        /* 編集フォーム */
+        <Form
+          type="text"
+          label="タイトル"
+          title={newTitle}
+          handleChange={handleEditFormChanges}
+          handleClick={handleEditTodo}
+          handleClick2={handleCloseEditForm}
+        />
+      )}
 
       <select value={filter} onChange={(e) => setFilter(e.target.value)}>
         <option value='all'>すべて</option>
@@ -127,16 +127,13 @@ const App = () => {
       <ul style={{backgroundColor:'green'}}>
       <>todoエリア</>
         {filteredTodos.map(todo => (
-          <li key={todo.id}>
-            <span>{todo.title}</span>
-            <select value={todo.status} onChange={(e) => handleStatusChange(todo,e)}>
-              <option value='notStarted'>未着手</option>
-              <option value='inProgress'>作業中</option>
-              <option value='done'>完了</option>
-            </select>
-            <button onClick={() => handleOpenEditForm(todo)}>編集</button>
-            <button onClick={() => handleDeleteTodo(todo)}>削除</button>
-          </li>
+          <List 
+            key={todo.id}  
+            todo={todo} 
+            handleChange={handleStatusChange} 
+            handleOpenClick={handleOpenEditForm} 
+            handleDeleteClick={handleDeleteTodo}  
+          />
         ))}
       </ul>
     </>

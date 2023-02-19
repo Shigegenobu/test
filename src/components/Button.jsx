@@ -1,8 +1,8 @@
 import React from "react";
 
-const Button = (props) => {
-  const {type,label,todoTitle,handleChange,handleClick} = props;
-  console.log(props)
+const Button = ({type,label,todoTitle,handleChange,handleClick}) => {
+  // const {type,label,todoTitle,handleChange,handleClick} = props;
+  // console.log(props)
   return (
     <>
     <input
