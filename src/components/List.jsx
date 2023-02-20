@@ -1,7 +1,8 @@
 import React from 'react'
 
-const List = (todo,handleChange,handleOpenCkick,handleDeleteCkick)=>{
-  // console.log(todo,handleChange,handleOpenCkick,handleDeleteCkick);
+const List = ({todo,handleChange,handleOpenClick,handleDeleteClick})=>{
+  console.log(todo,handleChange,handleOpenClick,handleDeleteClick);
+  console.log(todo);
   return (
     <div>
       <li key={todo.id}>
@@ -11,8 +12,8 @@ const List = (todo,handleChange,handleOpenCkick,handleDeleteCkick)=>{
             <option value='inProgress'>作業中</option>
             <option value='done'>完了</option>
           </select>
-          <button onClick={()=> handleOpenCkick(todo)}>編集</button>
-          <button onClick={()=> handleDeleteCkick(todo)}>削除</button>
+          <button onClick={()=> handleOpenClick(todo)}>編集</button>
+          <button onClick={()=> handleDeleteClick(todo)}>削除</button>
       </li>
     </div>
   )
