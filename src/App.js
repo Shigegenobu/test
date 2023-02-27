@@ -38,7 +38,7 @@ const App = () => {
     console.log(handleOpenEditForm)
   }
 
-  /** 編集フォーム閉じる */  
+  /** 編集フォーム閉じる */
   const handleCloseEditForm =() => {
     setIsEditable(false)
     setEditId()
@@ -57,7 +57,7 @@ const App = () => {
   /** Todo編集 */
 	const handleEditTodo = () => {
     const newTodos = todos.map((todo) => ({ ...todo }));
-      setTodos(() => newTodos.map((todo) => 
+      setTodos(() => newTodos.map((todo) =>
         todo.id === editId ? {...todo, title: newTitle} : todo
       ));
       setNewTitle("")
@@ -122,17 +122,17 @@ const App = () => {
       </select>
 
       {/* Todoリスト */}
-      
+
       {/* <Todo /> */}
       <ul style={{backgroundColor:'green'}}>
       <>todoエリア</>
         {filteredTodos.map(todo => (
-          <List 
-            key={todo.id}  
-            todo={todo} 
-            handleChange={handleStatusChange} 
-            handleOpenClick={handleOpenEditForm} 
-            handleDeleteClick={handleDeleteTodo}  
+          <List
+            key={todo.id}
+            todo={todo}
+            handleChange={handleStatusChange}
+            handleOpenClick={handleOpenEditForm}
+            handleDeleteClick={handleDeleteTodo}
           />
         ))}
       </ul>
